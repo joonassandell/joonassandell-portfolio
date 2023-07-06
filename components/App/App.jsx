@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { isBrowser } from '@/lib/utility';
 import { Splash } from '@/components/Splash';
 import { Header } from '@/components/Header';
-import { LocomotiveScrollProvider } from 'react-locomotive-scroll';
+import { LocomotiveScrollProvider } from '@/lib/react-locomotive-scroll';
 import { useRouter } from 'next/router';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { AppHead } from './';

@@ -27,7 +27,7 @@ import NProgress from 'nprogress';
 import { useScrollTo } from '@/lib/useScrollTo';
 import { NavItem } from './HeaderNavItem';
 import { urlState } from '@/lib/useUrlState';
-import { useLocomotiveScroll } from 'react-locomotive-scroll';
+import { useLocomotiveScroll } from '@/lib/react-locomotive-scroll';
 import FocusTrap from 'focus-trap-react';
 import { useMedia } from 'react-use';
 

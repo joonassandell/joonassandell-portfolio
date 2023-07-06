@@ -13,7 +13,7 @@ import { useAppContext } from '@/components/App';
 import { useState } from 'react';
 import { Link } from '@/components/Link';
 import { useScrollTo } from '@/lib/useScrollTo';
-import { useLocomotiveScroll } from 'react-locomotive-scroll';
+import { useLocomotiveScroll } from '@/lib/react-locomotive-scroll';
 
 export const HomePage = ({ id }) => {
   const about = getSitemap('about', 'secondary');
