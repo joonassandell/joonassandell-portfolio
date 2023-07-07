@@ -40,7 +40,13 @@ export const Template = ({ children, className, id }) => {
       onAnimationStart={() => {
         if (animState === 'animStart' && templateTransition) {
           console.log('Template transition start:', id);
-          if (scroll) scroll.stop();
+          // scroll.stop();
+          if (scroll) {
+            setTimeout(() => {
+              // window.scrollTo(0, 0);
+              scroll.scrollTo(0, { immediate: true, force: true });
+            }, 1100);
+          }
         }
       }}
       {...(!templateTransition && {
@@ -51,6 +57,15 @@ export const Template = ({ children, className, id }) => {
         variants: variantsWithTransition,
         transition: variantsWithTransition.transition,
       })}
+      style={{
+        ...(templateTransition &&
+          animState === 'animExit' && {
+            test: console.log(window.scrollY, 'offset scrollY'),
+            test: console.log(appState.windowOffset, 'appState windowOffset'),
+            inset: `${-window.scrollY}px 0 0 0`,
+            position: 'fixed',
+          }),
+      }}
     >
       <AnimatePresence>
         <div className="Template-inner" data-scroll-section>

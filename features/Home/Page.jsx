@@ -41,7 +41,8 @@ export const HomePage = ({ id }) => {
   };
 
   return (
-    <Template className={extraSpace && 'is-extraSpace'} id={id}>
+    // <Template className={extraSpace && 'is-extraSpace'} id={id}>
+    <Template className={animation && 'is-extraSpace'} id={id}>
       <TemplateMain>
         <m.div
           animate={animation ? 'animate' : ''}

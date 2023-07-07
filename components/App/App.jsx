@@ -13,18 +13,20 @@ const DISABLE_LOADING = process.env.NEXT_PUBLIC_DISABLE_LOADING;
 
 const AppContext = createContext({
   detect: {},
+  doc: isBrowser && document,
   html: isBrowser && document.documentElement,
   loading: DISABLE_LOADING ? false : true,
   loadingEnd: DISABLE_LOADING ? true : false,
   transition: false, // 'template', false, true
   transitionInitial: false,
+  windowOffset: 0,
 });
 let scrollOnUpdateOnce = false;
 
 export const App = ({ Component, pageProps }) => {
   const appContext = useAppContext();
   const [appState, setAppState] = useState(appContext);
-  const { html, loading, loadingEnd, transition } = appState;
+  const { html, doc, loading, loadingEnd, scrollLock, transition } = appState;
   const { asPath, beforePopState, push } = useRouter();
   const [animationComplete, setAnimationComplete] = useState();
   const containerRef = useRef(null);
@@ -51,6 +53,13 @@ export const App = ({ Component, pageProps }) => {
     setAppState(prevState => ({
       ...prevState,
       loadingEnd: value,
+    }));
+  };
+
+  const setWindowOffset = () => {
+    setAppState(prevState => ({
+      ...prevState,
+      windowOffset: window.scrollY,
     }));
   };
 
@@ -82,8 +91,10 @@ export const App = ({ Component, pageProps }) => {
       }));
     })();
 
-    const rootHeight = () =>
+    const rootHeight = () => {
       html.style.setProperty('--vh', `${window.innerHeight}px`);
+      html.style.setProperty('--dh', `${doc.body.scrollHeight}px`);
+    };
     window.addEventListener('resize', rootHeight);
     rootHeight();
 
@@ -106,12 +117,15 @@ export const App = ({ Component, pageProps }) => {
   useEffect(() => {
     if (transition) {
       html.classList.add('is-transition', 'is-transition:withDelay');
+      html.style.setProperty('--dh', `${doc.body.scrollHeight}px`);
+      setWindowOffset();
     }
 
     const hackClass = 'is-transition:template:withDelay';
     if (transition === 'template') html.classList.add(hackClass);
 
     if (!transition) {
+      html.style.setProperty('--dh', `${doc.body.scrollHeight}px`);
       html.classList.remove('is-transition');
       setTimeout(() => html.classList.remove('is-transition:withDelay'), 300);
       setTimeout(() => html.classList.remove(hackClass), 300);
@@ -168,6 +182,7 @@ export const App = ({ Component, pageProps }) => {
           options={{
             class: '@',
             draggingClass: 'is-drag',
+            el: html,
             initClass: 'is-init',
             scrollbarClass: 'ScrollBar',
             scrollingClass: 'is-scroll',
@@ -179,13 +194,14 @@ export const App = ({ Component, pageProps }) => {
             tablet: {
               smooth: true,
             },
-            touchMultiplier: 4,
+            touchMultiplier: 1.5,
           }}
           location={animationComplete}
           watch={[loadingEnd]}
           onLocationChange={scroll => {
-            scroll.scroll.stop && scroll.start();
-            scroll.scrollTo(0, { duration: 0, disableLerp: true });
+            // window.scrollTo(0, 0);
+            scroll.scrollTo(0, { immediate: true, force: true });
+            scroll.scroll.lenis.__isStopped && scroll.start();
             if (transition) setTransition(false);
           }}
           onUpdate={scroll => {
@@ -200,7 +216,7 @@ export const App = ({ Component, pageProps }) => {
         >
           <div className="App">
             <Header navTitle={pageProps.navTitle} />
-            <main className="App-main" data-scroll-container ref={containerRef}>
+            <main className="App-main">
               <AnimatePresence
                 initial={false}
                 onExitComplete={() => {

@@ -100,7 +100,7 @@ export const Header = ({ navTitle = CONTENT.defaultNavTitle }) => {
      * Header is open/closed. Note that scroll will stay stopped if header links
      * are clicked but App takes care of enabling it after route change.
      */
-    scroll && !scroll.scroll.stop ? scroll.stop() : scroll.start();
+    isOpen ? scroll.start() : scroll.stop();
 
     if (mask === 'closed' || mask === 'closedReset') setMask('open');
     if (mask === 'open' || mask === 'openReset') setMask('closed');
@@ -428,6 +428,7 @@ export const Header = ({ navTitle = CONTENT.defaultNavTitle }) => {
             'is-open': maskIsOpen,
             'is-disabled': disabled,
           })}
+          data-lenis-prevent
           ref={maskRef}
         >
           {maskIsOpen && (
