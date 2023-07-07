@@ -1,66 +1,10 @@
-/* ======
- * Base
- * ====== */
-
 :root {
-  &.is-scroll-smooth {
-    overflow: hidden;
-  }
-
-  &.is-drag {
-    cursor: grabbing;
-    user-select: none;
-  }
+  // height: auto;
+  scroll-behavior: auto;
 }
 
+:root,
 body {
-  .is-smooth & {
-    overflow: hidden;
-  }
-}
-
-/* ======
- * Scrollbar
- * ====== */
-
-.ScrollBar {
-  height: 100%;
-  inset: 0 0 auto auto;
-  mix-blend-mode: difference;
-  opacity: 0;
-  position: absolute;
-  transform-origin: center right;
-  transition: transform 0.3s, opacity 0.3s;
-  width: 11px;
-  z-index: $locomotive-scrollBar-zIndex;
-
-  &:hover {
-    transform: scaleX(1.45);
-  }
-
-  &:hover, :root.is-scroll &, :root.is-drag & {
-    opacity: 1;
-  }
-
-  :root.is-transition\:withDelay &,
-  :root.is-headerOpen & {
-    opacity: 0;
-    pointer-events: none;
-  }
-}
-
-.ScrollBar_thumb {
-  background-color: var(--white);
-  border-radius: 10px;
-  cursor: grab;
-  margin: 2px;
-  opacity: 0.5;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 7px;
-
-  .is-drag & {
-    cursor: grabbing;
-  }
+  // min-height: 100vh;
+  // width: 100%;
 }
