@@ -9,7 +9,6 @@ const data: Optional<Milestone, 'category' | 'categoryName'>[] = [
   {
     date: '2024-08-06',
     event: 'Launched UI Laboratory',
-    highlight: true,
     major: true,
     url: 'https://x.com/joonassandell/status/1820739735939146047',
   },
@@ -25,6 +24,25 @@ const data: Optional<Milestone, 'category' | 'categoryName'>[] = [
    * ======================================= */
 
   {
+    date: '2026-06-15',
+    event: 'New Freepress marketing materials including Series A deck',
+    url: '/feed',
+  },
+  {
+    date: '2025-08-01',
+    event: 'Shipped Freepress iOS & Android app',
+    highlight: true,
+    major: true,
+    url: 'https://freepress.ai/download',
+  },
+  {
+    date: '2025-04-01',
+    event: 'Shipped Freepress web app',
+    highlight: true,
+    major: true,
+    url: 'https://freepress.ai',
+  },
+  {
     date: '2025-05-03',
     event: 'Launched Freepress pre-launch landing website',
     url: 'https://freepress.ai',
@@ -32,7 +50,6 @@ const data: Optional<Milestone, 'category' | 'categoryName'>[] = [
   {
     date: '2025-02-10',
     event: 'Designed initial Freepress brand & design system',
-    highlight: true,
     url: '/feed',
   },
 
@@ -43,7 +60,6 @@ const data: Optional<Milestone, 'category' | 'categoryName'>[] = [
   {
     date: '2023-03-07',
     event: 'Launched Biocode website 2.0',
-    highlight: true,
     major: true,
     url: '/biocode',
   },

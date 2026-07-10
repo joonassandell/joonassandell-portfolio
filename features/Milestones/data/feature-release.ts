@@ -18,6 +18,40 @@ const data: Optional<Milestone, 'category' | 'categoryName'>[] = [
   },
 
   /* =======================================
+   * Freepress
+   * ======================================= */
+
+  {
+    date: '2026-05-01',
+    event:
+      'Polished various Freepress mobile core features: audio player, story swiping, announcements and pull to refresh',
+    url: 'https://freepress.ai/download',
+  },
+  {
+    date: '2026-04-08',
+    event: 'Shipped Freepress Just Now short news for mobile',
+    major: true,
+    url: 'https://freepress.ai/download',
+  },
+  {
+    date: '2026-05-26',
+    event: 'Shipped Freepress mobile compact views',
+    url: 'https://freepress.ai/download',
+  },
+  {
+    date: '2026-02-15',
+    event: 'Shipped Freepress Premium Stories',
+    major: true,
+    url: 'https://freepress.ai/premium',
+  },
+  {
+    date: '2025-12-11',
+    event: 'Shipped Freepress Daily Brief notifications',
+    major: true,
+    url: 'https://x.com/freepressai/status/2061455512307224990',
+  },
+
+  /* =======================================
    * Biocode
    * ======================================= */
 
